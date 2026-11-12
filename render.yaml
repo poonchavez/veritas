@@ -2,7 +2,7 @@ services:
   - type: web
     name: veritas
     runtime: docker
-    plan: 0.5c-512mb
+    plan: free
     region: oregon
     dockerfilePath: ./aspnet/Dockerfile
     dockerContext: .
@@ -15,7 +15,3 @@ services:
         value: http://+:8080
       - key: INTENTIONS_DB_PATH
         value: /data/intentions.sqlite3
-    disk:
-      name: veritas-data
-      mountPath: /data
-      sizeGB: 1
