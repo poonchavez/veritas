@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="@(ViewData["Locale"] as string == "zh-TW" ? "zh-Hant" : "en")">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#fbfaf7" />
+  <title>@ViewData["Title"] · Veritas</title>
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="@(ViewData["Locale"] as string == "zh-TW" ? "locale-zh" : "")">
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Veritas home"><span class="brand-mark">✝</span><span><strong class="brand-name">Veritas</strong><small>A quiet place to pray</small></span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/">@(ViewData["Locale"] as string == "zh-TW" ? "主頁" : "Home")</a>
+        <a href="/prayer-intentions">@(ViewData["Locale"] as string == "zh-TW" ? "祈禱意向" : "Prayer intentions")</a>
+        <a href="/prayer-library">@(ViewData["Locale"] as string == "zh-TW" ? "祈禱文" : "Prayer library")</a>
+        <a href="/rosary">@(ViewData["Locale"] as string == "zh-TW" ? "玫瑰經" : "The Rosary")</a>
+        <a href="/holy-mass">@(ViewData["Locale"] as string == "zh-TW" ? "彌撒常規" : "Holy Mass")</a>
+      </nav>
+      <div class="locale-switch"><a href="@Model.LocalePath("en")" lang="en">EN</a><span>·</span><a href="@Model.LocalePath("zh-TW")" lang="zh-Hant">繁</a></div>
+    </header>
+    @RenderBody()
+    <footer class="page-footer"><span>✳</span> Veritas <span>PRAY WITHOUT CEASING</span></footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+version: "1"
+services:
+  - type: web
+    name: veritas-intentions-api
+    runtime: docker
+    repo: https://github.com/poonlonghei/veritas
+    plan: free
+    region: oregon
+    dockerContext: .
+    dockerfilePath: ./backend/Dockerfile
+    healthCheckPath: /api/health/
+    autoDeployTrigger: commit
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://poonlonghei.github.io,https://www.chavezpoon.com
+      - key: INTENTIONS_DB_PATH
+        value: /data/intentions.sqlite3
+  - type: web
+    name: veritas-prayer-api
+    runtime: docker
+    repo: https://github.com/poonlonghei/veritas
+    plan: free
+    region: oregon
+    dockerContext: .
+    dockerfilePath: ./java/Dockerfile
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://poonlonghei.github.io,https://www.chavezpoon.com
