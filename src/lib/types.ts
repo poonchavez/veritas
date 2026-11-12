@@ -18,18 +18,3 @@ export type DailyContent = {
   prayer: Prayer;
 };
 
-export type PrayerIntention = {
-  id: string;
-  text: string;
-  name: string;
-  location: string;
-  language: "en" | "zh-TW";
-  createdAt: string;
-};
-
-export type MonthlyIntentions = {
-  month: string;
-  language: "en" | "zh-TW";
-  months: string[];
-  intentions: PrayerIntention[];
-};

@@ -2,7 +2,6 @@ import HomePage, { type Screen } from "../../page";
 
 const screens: Record<string, Screen> = {
   readings: "Daily readings",
-  "prayer-intentions": "Prayer intentions",
   "holy-mass": "Order of Holy Mass",
   "prayer-library": "Prayer library",
   rosary: "The Rosary",
@@ -12,7 +11,6 @@ const screens: Record<string, Screen> = {
 export function generateStaticParams() {
   return [
     { page: "readings" },
-    { page: "prayer-intentions" },
     { page: "holy-mass" },
     { page: "prayer-library" },
     { page: "rosary" },
