@@ -26,7 +26,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px
 .locale-zh { --serif: var(--kai); --sans: var(--kai); letter-spacing: .01em; font-family: var(--kai); }
 .locale-zh .brand-name, .locale-zh .welcome-row h1, .locale-zh .page-heading h1,
 .locale-zh .daily-copy h2, .locale-zh .scripture-card-heading h2, .locale-zh .readings-section-heading h2,
-.locale-zh .gospel-reflection h2, .locale-zh .intention-month-title, .locale-zh .mass-markdown,
+.locale-zh .gospel-reflection h2, .locale-zh .mass-markdown,
 .locale-zh .prayer-card h3, .locale-zh .rosary-hero-copy h2, .locale-zh .decade-heading h2,
 .locale-zh .about-section h2, .locale-zh .about-hero h1 { font-family: var(--kai); }
 .locale-zh .main-content { line-height: 1.75; }
@@ -133,28 +133,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px
 .reading-embed { display: block; width: 100%; height: 720px; margin-top: 20px; border: 1px solid #eeece5; border-radius: 4px; background: #fff; }
 .reading-proxy-notice { margin: 20px 0 0; padding: 20px; border: 1px solid #eeece5; border-radius: 4px; color: #777f75; font-size: 15px; line-height: 1.8; }
 .reading-resource-link { display: inline-block; margin-top: 13px; color: #607560; font-size: 14px; font-weight: 600; }
-.intention-form-card, .monthly-intentions-section { margin-top: 16px; padding: 26px 28px; border: 1px solid var(--line); border-radius: 5px; background: #fffefa; }
-.intention-form { display: grid; gap: 15px; margin-top: 20px; }
-.intention-form > label:not(.intention-consent) { display: grid; gap: 7px; color: var(--ink-deep); font-size: 14px; font-weight: 600; }
-.intention-form input:not([type="checkbox"]), .intention-form textarea, .monthly-intentions-heading select { width: 100%; border: 1px solid #deddd5; border-radius: 4px; padding: 10px 12px; color: var(--ink-deep); background: #fff; font: inherit; font-size: 15px; }
-.intention-form textarea { min-height: 110px; resize: vertical; line-height: 1.7; }
-.intention-form input:focus, .intention-form textarea:focus, .monthly-intentions-heading select:focus { outline: 2px solid #71816e; outline-offset: 2px; }
-.intention-consent { display: flex; align-items: flex-start; gap: 10px; color: #626b61; font-size: 14px; line-height: 1.6; }
-.intention-consent input { width: 17px; height: 17px; flex: 0 0 auto; margin: 2px 0 0; accent-color: #607560; }
-.intention-submit { justify-self: start; }
-.intention-submit:disabled { cursor: wait; opacity: .65; }
-.monthly-intentions-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
-.monthly-intentions-heading h2 { margin: 8px 0 0; color: var(--ink-deep); font: 500 23px/1.3 var(--serif); }
-.monthly-intentions-heading label { display: grid; gap: 6px; color: #777f75; font-size: 13px; }
-.monthly-intentions-heading select { min-width: 175px; }
-.intention-month-title { margin: 24px 0 13px; color: var(--ink-deep); font: 500 20px/1.4 var(--serif); }
-.intention-list { display: grid; gap: 10px; }
-.intention-card { padding: 17px 18px; border: 1px solid #eeece5; border-radius: 4px; background: #fff; }
-.intention-card > p { margin: 0; color: var(--ink-deep); font-size: 15px; line-height: 1.75; overflow-wrap: anywhere; }
-.intention-attribution { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 12px; margin-top: 12px; color: #777f75; font-size: 13px; }
-.intention-attribution strong { color: #607560; font-weight: 600; }
-.intention-attribution time { margin-left: auto; color: #898c82; }
-.intentions-empty { margin: 15px 0 0; color: #777f75; font-size: 15px; line-height: 1.7; }
 .gospel-reflection { margin-top: 16px; padding: 27px 28px; border: 1px solid var(--line); border-radius: 5px; background: #f4f1e9; }
 .gospel-reflection > p { max-width: 620px; }
 .reflection-reference { display: block; margin-top: 14px; color: #71816e; font: italic 15px var(--serif); }
@@ -328,10 +306,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px
   .office-intro { align-items: flex-start; flex-direction: column; gap: 17px; padding: 22px 18px; }
   .office-intro h2 { font-size: 23px; }
   .office-hours { padding: 21px 18px; }
-  .intention-form-card, .monthly-intentions-section { padding: 21px 18px; }
-  .monthly-intentions-heading { align-items: stretch; flex-direction: column; gap: 13px; }
-  .monthly-intentions-heading select { min-width: 0; }
-  .intention-attribution time { width: 100%; margin-left: 0; }
   .readings-section-heading h2, .gospel-reflection h2 { font-size: 21px; }
   .reading-embed { height: 650px; }
   .quick-grid { grid-template-columns: 1fr; gap: 8px; margin: 12px 0 33px; }
@@ -373,7 +347,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px
 .screen-motion { animation: screen-arrive .42s cubic-bezier(.2,.7,.25,1) both; }
 .screen-motion :is(.daily-card, .scripture-card, .saint-card, .quick-card, .prayer-card,
   .readings-section, .gospel-reflection, .office-intro, .office-hour-card,
-  .intention-form-card, .monthly-intentions-section, .rosary-hero, .decade-card,
+  .rosary-hero, .decade-card,
   .about-intro, .about-values article, .about-me) {
   animation: surface-arrive .48s cubic-bezier(.2,.7,.25,1) both;
 }
@@ -446,7 +420,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px
   .screen-motion { animation-duration: .34s; }
   .screen-motion :is(.daily-card, .scripture-card, .saint-card, .quick-card, .prayer-card,
     .readings-section, .gospel-reflection, .office-intro, .office-hour-card,
-    .intention-form-card, .monthly-intentions-section, .rosary-hero, .decade-card,
+    .rosary-hero, .decade-card,
     .about-intro, .about-values article, .about-me) { animation-duration: .38s; }
   .sidebar.sidebar-open .nav-item { animation: menu-item-arrive .28s both; }
   .sidebar.sidebar-open .nav-item:nth-child(2) { animation-delay: 25ms; }
