@@ -7,11 +7,5 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://+:8080
-      INTENTIONS_DB_PATH: /data/intentions.sqlite3
-    volumes:
-      - veritas-intentions:/data
     ports:
       - "3000:8080"
-
-volumes:
-  veritas-intentions:

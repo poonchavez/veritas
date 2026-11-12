@@ -2,31 +2,13 @@
 @model IndexModel
 @{
     ViewData["Locale"] = Model.CurrentLanguage;
-    ViewData["Title"] = Model.IsIntentions ? (Model.IsChinese ? "祈禱意向" : "Prayer intentions") : (Model.CurrentPage == "home" ? "A quiet place to pray" : Model.CurrentPage.Replace('-', ' '));
+    ViewData["Title"] = Model.PageTitle;
 }
-<main class="main-content @(Model.IsIntentions ? "readings-page intentions-page" : "home-page")">
- @if (Model.IsIntentions) {
-  <header class="page-heading"><div><span class="eyebrow">@(Model.IsChinese ? "同心祈禱" : "A COMMUNITY IN PRAYER")</span><h1>@(Model.IsChinese ? "祈禱意向" : "Prayer intentions")</h1><p>@(Model.IsChinese ? "分享你的意向，並為團體中的其他人祈禱。" : "Share an intention and pray for others in our community.")</p></div><span class="heading-mark">✳</span></header>
-  <section class="intention-form-card">
-   <div class="readings-section-heading"><h2>@(Model.IsChinese ? "分享你的祈禱意向" : "Share your prayer intention")</h2><p>@(Model.IsChinese ? "你的姓名、地點和意向將公開顯示。" : "Your name, location, and intention will be visible to all visitors.")</p></div>
-   <form method="post" asp-page-handler="Share" class="intention-form">
-    <input type="hidden" name="Language" value="@Model.CurrentLanguage" />
-    <label>@(Model.IsChinese ? "姓名" : "Name")<input asp-for="Name" autocomplete="name" maxlength="100" required /></label>
-    <label>@(Model.IsChinese ? "地點" : "Location")<input asp-for="Location" autocomplete="address-level2" maxlength="100" required /></label>
-    <label>@(Model.IsChinese ? "祈禱意向" : "Prayer intention")<textarea asp-for="Text" maxlength="500" rows="4" required></textarea></label>
-    <label class="intention-consent"><input asp-for="Consent" required /><span>@(Model.IsChinese ? "我同意公開我的姓名、地點及祈禱意向。" : "I consent to publishing my name, location, and prayer intention for all visitors to see.")</span></label>
-    <div asp-validation-summary="All" class="validation-summary"></div>
-    <button class="cream-button intention-submit">@(Model.IsChinese ? "分享意向" : "Share intention") <span aria-hidden="true">→</span></button>
-   </form>
-  </section>
-  <section class="monthly-intentions-section">
-   <div class="monthly-intentions-heading"><div><span class="eyebrow">@(Model.IsChinese ? "彼此代禱" : "PRAYING TOGETHER")</span><h2>@(Model.IsChinese ? "每月意向" : "Monthly intentions")</h2></div><form method="get" class="month-picker"><input type="hidden" name="language" value="@Model.CurrentLanguage"/><label for="month">@(Model.IsChinese ? "按月份瀏覽" : "Browse by month")</label><select id="month" name="month" onchange="this.form.submit()">@foreach (var month in Model.Months) { <option value="@month" selected="@(month == Model.CurrentMonth)">@Model.MonthLabel(month)</option> }</select></form></div>
-   <h3 class="intention-month-title">@Model.MonthLabel(Model.CurrentMonth)</h3>
-   @if (Model.Intentions.Count > 0) { <div class="intention-list">@foreach (var item in Model.Intentions) { <article class="intention-card"><p>@item.Text</p><div class="intention-attribution"><strong>@item.Name</strong><span>@item.Location</span><time datetime="@item.CreatedAt">@DateTime.Parse(item.CreatedAt).ToLocalTime().ToString("d MMM yyyy")</time></div></article> }</div> } else { <p class="intentions-empty">@(Model.IsChinese ? "本月尚未有分享的意向。" : "There are no shared intentions for this month yet.")</p> }
-  </section>
- } else {
-  <section class="welcome-row"><span class="eyebrow">A QUIET PLACE TO PRAY</span><h1>Make room for stillness.</h1><p>Daily prayer, timeless words, and a community holding one another in prayer.</p></section>
-  <section class="daily-card"><div class="daily-copy"><span class="eyebrow">PAUSE WITH THE WORD</span><h2>Take a moment in prayer</h2><p>Let the quiet of prayer bring the heart back to what matters.</p><a class="cream-button" href="/readings">Open daily readings <span>→</span></a></div><div class="daily-art" aria-hidden="true"><div class="sun-disc">✳</div><div class="arch arch-one"></div><div class="arch arch-two"></div><div class="arch arch-three"></div></div></section>
-  <div class="quick-grid"><a class="quick-card" href="/prayer-intentions"><span class="quick-icon">✳</span><span class="quick-text"><strong>Prayer intentions</strong><small>Share and pray together</small></span><span>→</span></a><a class="quick-card" href="/prayer-library"><span class="quick-icon">✝</span><span class="quick-text"><strong>Prayer library</strong><small>Find a familiar prayer</small></span><span>→</span></a><a class="quick-card" href="/rosary"><span class="quick-icon">◉</span><span class="quick-text"><strong>The Rosary</strong><small>Pray one decade at a time</small></span><span>→</span></a><a class="quick-card" href="/holy-mass"><span class="quick-icon">✧</span><span class="quick-text"><strong>Order of Holy Mass</strong><small>Follow the celebration</small></span><span>→</span></a></div>
- }
+<main class="main-content">
+    @if (Model.CurrentPage == "readings") { @await Html.PartialAsync("Shared/_Readings", Model) }
+    else if (Model.CurrentPage == "prayer-library") { @await Html.PartialAsync("Shared/_PrayerLibrary", Model) }
+    else if (Model.CurrentPage == "rosary") { @await Html.PartialAsync("Shared/_Rosary", Model) }
+    else if (Model.CurrentPage == "holy-mass") { @await Html.PartialAsync("Shared/_HolyMass", Model) }
+    else if (Model.CurrentPage == "about") { @await Html.PartialAsync("Shared/_About", Model) }
+    else { @await Html.PartialAsync("Shared/_Home", Model) }
 </main>

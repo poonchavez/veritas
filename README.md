@@ -1,14 +1,6 @@
-# Veritas — A quiet place to pray
+# Veritas
 
-Veritas is a bilingual Catholic prayer site built with ASP.NET Core Razor Pages and SQLite. Its quiet green and cream design is shared across the English and Traditional Chinese routes. Prayer intentions are stored in SQLite, grouped by language and month, and published only after the submitter gives consent.
-
-## Run with Docker
-
-```bash
-docker compose up --build
-```
-
-Open <http://localhost:3000>. Docker stores the intentions database in the `veritas-intentions` volume at `/data/intentions.sqlite3`.
+Veritas is a quiet, bilingual Catholic prayer website built with ASP.NET Core Razor Pages. It offers daily readings and reflection, traditional prayers, a Rosary guide, and a guide to the Order of Mass in a calm, responsive design.
 
 ## Run locally
 
@@ -19,21 +11,39 @@ cd aspnet
 dotnet run
 ```
 
-The app creates `data/intentions.sqlite3` on first start. Set `INTENTIONS_DB_PATH` to choose another location.
+Open the local URL printed by `dotnet run`.
+
+## Run with Docker
+
+From the repository root:
+
+```bash
+docker compose up --build
+```
+
+Open <http://localhost:3000>.
 
 ## Pages
 
-- `/` — English home
-- `/prayer-intentions` — English intention form and monthly archive
-- `/zh-tw/` and `/zh-tw/prayer-intentions` — Traditional Chinese routes
-- `/prayer-library`, `/rosary`, `/holy-mass`, and `/readings` — route placeholders retained for the remaining content migration
+| Page | English | 繁體中文 |
+| --- | --- | --- |
+| Home | `/` | `/zh-tw/` |
+| Daily readings & reflection | `/readings` | `/zh-tw/readings` |
+| Prayer library | `/prayer-library` | `/zh-tw/prayer-library` |
+| The Rosary | `/rosary` | `/zh-tw/rosary` |
+| Order of Holy Mass | `/holy-mass` | `/zh-tw/holy-mass` |
+| About Veritas | `/about` | `/zh-tw/about` |
 
-The ASP.NET app reuses the site's prayer intention table and data path, so an existing SQLite database at `INTENTIONS_DB_PATH` remains available. The API retains the existing contract:
+Every page is rendered as HTML by ASP.NET Core Razor Pages. Prayer intentions and their API endpoints have been removed from the ASP.NET site.
 
-- `GET /api/health/`
-- `GET /api/intentions/?month=YYYY-MM&language=en|zh-TW`
-- `POST /api/intentions/` with `name`, `location`, `text`, `consent: true`, and `language`
+## Deploy to Render
 
-The intention API validates lengths, language, month format, and explicit publication consent. The site form is protected by ASP.NET's antiforgery token.
+The repository includes a Render Blueprint in `render.yaml`. Connect the GitHub repository in Render using **New → Blueprint**, then deploy the `veritas` web service. It uses the free plan; the service may spin down when idle. No database or persistent disk is required by the site.
 
-The ASP.NET port currently contains the shared site shell, home screen, and complete intentions flow. The prayer library, Rosary, Mass, readings, and about screen still need their legacy page content and interactions ported; those route placeholders currently render the home screen.
+## Project structure
+
+- `aspnet/Pages` — Razor Pages and shared HTML partials
+- `aspnet/wwwroot/css/site.css` — responsive site styles
+- `aspnet/Dockerfile` — multi-stage .NET container build
+- `render.yaml` — Render deployment configuration
+- `docker-compose.yml` — local Docker configuration

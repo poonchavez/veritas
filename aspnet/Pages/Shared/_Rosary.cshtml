@@ -1,0 +1,15 @@
+@model IndexModel
+@{
+    var zh = Model.IsChinese;
+}
+<header class="page-heading"><div><span class="eyebrow">@(zh ? "默想耶穌的一生" : "A CONTEMPLATIVE PRAYER")</span><h1>@(zh ? "誦念玫瑰經" : "Pray the Rosary")</h1><p>@(zh ? "與聖母一起，溫柔地默想耶穌的一生。" : "Walk gently through the life of Jesus with Mary.")</p></div><span class="heading-mark">✳</span></header>
+<section class="rosary-hero"><div><span class="eyebrow eyebrow-light">@(zh ? "今日奧蹟" : "TODAY’S MYSTERIES")</span><h2>@(zh ? "歡喜奧蹟" : "The Joyful Mysteries")</h2><p>@(zh ? "星期一及星期六" : "Monday & Saturday")</p></div><div class="rosary-art" aria-hidden="true"><span>✳</span><i>†</i></div></section>
+<section class="mysteries-section"><div class="section-heading"><div><span class="eyebrow">@(zh ? "耶穌生命中的五個時刻" : "FIVE MOMENTS IN THE LIFE OF CHRIST")</span><h2>@(zh ? "玫瑰經奧蹟" : "The mysteries")</h2></div></div><div class="mystery-grid">
+    <article class="mystery-card"><span>01</span><h3>@(zh ? "天使報喜" : "The Annunciation")</h3><p>@(zh ? "天使加俾額爾向瑪利亞報告，她將成為救主之母。" : "The angel Gabriel announces to Mary that she will be the mother of the Saviour.")</p><small>Lk 1:26–38</small></article>
+    <article class="mystery-card"><span>02</span><h3>@(zh ? "聖母往見" : "The Visitation")</h3><p>@(zh ? "瑪利亞探訪表姊依撒伯爾，並以喜樂讚美天主。" : "Mary visits Elizabeth, who rejoices at the coming of the Lord.")</p><small>Lk 1:39–56</small></article>
+    <article class="mystery-card"><span>03</span><h3>@(zh ? "耶穌誕生" : "The Nativity")</h3><p>@(zh ? "耶穌在白冷誕生，天主成為我們中間的一員。" : "Jesus is born in Bethlehem; God comes to dwell among us.")</p><small>Lk 2:1–20</small></article>
+    <article class="mystery-card"><span>04</span><h3>@(zh ? "耶穌獻於聖殿" : "The Presentation")</h3><p>@(zh ? "瑪利亞和若瑟把耶穌帶到聖殿，奉獻給天主。" : "Mary and Joseph present Jesus in the Temple.")</p><small>Lk 2:22–38</small></article>
+    <article class="mystery-card"><span>05</span><h3>@(zh ? "耶穌在聖殿被尋獲" : "The Finding in the Temple")</h3><p>@(zh ? "瑪利亞和若瑟在聖殿中尋回少年耶穌。" : "Mary and Joseph find the boy Jesus in the Temple.")</p><small>Lk 2:41–52</small></article>
+</div></section>
+<section class="prayer-sequence"><span class="eyebrow">@(zh ? "每端奧蹟的祈禱次序" : "A SIMPLE RHYTHM FOR EACH DECADE")</span><h2>@(zh ? "慢慢地祈禱。" : "Pray at your own pace.")</h2><ol><li>@(zh ? "默想這端奧蹟。" : "Announce the mystery and take a moment to reflect.")</li><li>@(zh ? "誦念一遍天主經。" : "Pray one Our Father.")</li><li>@(zh ? "誦念十遍聖母經。" : "Pray ten Hail Marys.")</li><li>@(zh ? "以聖三光榮經作結。" : "Conclude with the Glory Be.")</li></ol><a class="button button-green" href="@Model.PageUrl("prayer-library")">@(zh ? "開啟祈禱文庫" : "Open the prayer library") <span>→</span></a></section>
+<aside class="closing-note"><span>✧</span><p>@(zh ? "不必匆忙。如果心神游移，溫柔地回到眼前的奧蹟。" : "There is no need to hurry. If your mind wanders, gently return to the mystery.")</p><small>@(zh ? "靜心片刻" : "Take your time.")</small></aside>

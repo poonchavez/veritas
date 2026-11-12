@@ -13,5 +13,3 @@ services:
         value: Production
       - key: ASPNETCORE_URLS
         value: http://+:8080
-      - key: INTENTIONS_DB_PATH
-        value: /data/intentions.sqlite3

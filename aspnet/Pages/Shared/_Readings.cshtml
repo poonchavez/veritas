@@ -1,0 +1,8 @@
+@model IndexModel
+@{
+    var zh = Model.IsChinese;
+}
+<header class="page-heading"><div><span class="eyebrow">@(zh ? "禮儀年的每日祈禱" : "THE LITURGY OF THE DAY")</span><h1>@(zh ? "每日讀經與默想" : "Daily readings & reflection")</h1><p>@(zh ? "與今日的讀經和福音一同停留片刻。" : "Spend a moment with the readings and Gospel for today.")</p></div><span class="heading-mark">✳</span></header>
+<section class="reading-feature"><div class="reading-feature-icon">▤</div><span class="eyebrow eyebrow-light">@(zh ? "今日彌撒讀經" : "TODAY’S MASS READINGS")</span><h2>@(zh ? "讓聖言引領今日。" : "Let the Word accompany your day.")</h2><p>@(zh ? "閱讀第一篇讀經、答唱詠及福音，並留意最觸動你的字句。" : "Read the first reading, responsorial psalm, and Gospel. Notice the words that speak to you.")</p><a class="button button-cream" href="@(zh ? "https://catholic-dlc.org.hk/frame3.htm" : "https://universalis.com/mass.htm")" target="_blank" rel="noopener noreferrer">@(zh ? "開啟今日讀經" : "Read today’s scripture") <span aria-hidden="true">↗</span></a></section>
+<section class="reflection-panel"><span class="eyebrow">@(zh ? "停留在聖言中" : "PAUSE WITH THE WORD")</span><h2>@(zh ? "停下來，聆聽。" : "Be still and listen.")</h2><p>@(zh ? "在忙碌的一天中，讓自己安靜下來。天主的臨在不一定帶來聲響；有時，只需一刻留心，便能在熟悉的事物中重新發現祂。" : "Set aside the noise of the day. God’s presence does not always arrive with a sound; sometimes a quiet moment is enough to notice grace in familiar things.")</p><span class="reflection-reference">@(zh ? "「你們要停手！應承認我是天主。」（詠 46:11）" : "“Be still, and know that I am God.” · Psalm 46:10")</span></section>
+<p class="source-note">@(zh ? "繁體中文讀經由香港教區禮儀委員會提供。" : "Daily Mass readings are provided by Universalis.")</p>

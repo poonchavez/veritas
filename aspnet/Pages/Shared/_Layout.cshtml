@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html lang="@(ViewData["Locale"] as string == "zh-TW" ? "zh-Hant" : "en")">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#fbfaf7" />
-  <title>@ViewData["Title"] · Veritas</title>
-  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <meta name="description" content="Veritas is a quiet companion for Catholic prayer, daily readings, and reflection." />
+    <title>@ViewData["Title"] · Veritas</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="@(ViewData["Locale"] as string == "zh-TW" ? "locale-zh" : "")">
-  <div class="app-shell">
-    <header class="site-header">
-      <a class="brand" href="/" aria-label="Veritas home"><span class="brand-mark">✝</span><span><strong class="brand-name">Veritas</strong><small>A quiet place to pray</small></span></a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="/">@(ViewData["Locale"] as string == "zh-TW" ? "主頁" : "Home")</a>
-        <a href="/prayer-intentions">@(ViewData["Locale"] as string == "zh-TW" ? "祈禱意向" : "Prayer intentions")</a>
-        <a href="/prayer-library">@(ViewData["Locale"] as string == "zh-TW" ? "祈禱文" : "Prayer library")</a>
-        <a href="/rosary">@(ViewData["Locale"] as string == "zh-TW" ? "玫瑰經" : "The Rosary")</a>
-        <a href="/holy-mass">@(ViewData["Locale"] as string == "zh-TW" ? "彌撒常規" : "Holy Mass")</a>
-      </nav>
-      <div class="locale-switch"><a href="@Model.LocalePath("en")" lang="en">EN</a><span>·</span><a href="@Model.LocalePath("zh-TW")" lang="zh-Hant">繁</a></div>
-    </header>
-    @RenderBody()
-    <footer class="page-footer"><span>✳</span> Veritas <span>PRAY WITHOUT CEASING</span></footer>
-  </div>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="@Model.PageUrl("home")" aria-label="Veritas home">
+                <span class="brand-mark" aria-hidden="true">✳</span>
+                <span class="brand-copy"><strong>veritas</strong><small>@(Model.IsChinese ? "靜心祈禱" : "A QUIET PLACE TO PRAY")</small></span>
+            </a>
+            <p class="nav-label">@(Model.IsChinese ? "祈禱空間" : "YOUR PRAYER SPACE")</p>
+            <nav class="side-nav" aria-label="@(Model.IsChinese ? "主要導覽" : "Main navigation")">
+                <a class="nav-item @(Model.CurrentPage == "home" ? "nav-active" : "")" aria-current="@(Model.CurrentPage == "home" ? "page" : null)" href="@Model.PageUrl("home")"><span class="nav-icon">⌂</span>@(Model.IsChinese ? "主頁" : "Home")</a>
+                <a class="nav-item @(Model.CurrentPage == "readings" ? "nav-active" : "")" aria-current="@(Model.CurrentPage == "readings" ? "page" : null)" href="@Model.PageUrl("readings")"><span class="nav-icon">▤</span>@(Model.IsChinese ? "每日讀經" : "Daily readings")</a>
+                <a class="nav-item @(Model.CurrentPage == "holy-mass" ? "nav-active" : "")" aria-current="@(Model.CurrentPage == "holy-mass" ? "page" : null)" href="@Model.PageUrl("holy-mass")"><span class="nav-icon">✝</span>@(Model.IsChinese ? "彌撒常規" : "Order of Mass")</a>
+                <a class="nav-item @(Model.CurrentPage == "prayer-library" ? "nav-active" : "")" aria-current="@(Model.CurrentPage == "prayer-library" ? "page" : null)" href="@Model.PageUrl("prayer-library")"><span class="nav-icon">◫</span>@(Model.IsChinese ? "祈禱文庫" : "Prayer library")</a>
+                <a class="nav-item @(Model.CurrentPage == "rosary" ? "nav-active" : "")" aria-current="@(Model.CurrentPage == "rosary" ? "page" : null)" href="@Model.PageUrl("rosary")"><span class="nav-icon">◎</span>@(Model.IsChinese ? "玫瑰經" : "The Rosary")</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <a class="nav-item @(Model.CurrentPage == "about" ? "nav-active" : "")" aria-current="@(Model.CurrentPage == "about" ? "page" : null)" href="@Model.PageUrl("about")"><span class="nav-icon">ⓘ</span>@(Model.IsChinese ? "關於 Veritas" : "About Veritas")</a>
+                <div class="language-switch" aria-label="Language">
+                    <a class="@(Model.IsChinese ? "" : "selected")" href="@Model.LocaleUrl(Model.CurrentPage, "en")" lang="en">EN</a>
+                    <a class="@(Model.IsChinese ? "selected" : "")" href="@Model.LocaleUrl(Model.CurrentPage, "zh-TW")" lang="zh-Hant">繁</a>
+                </div>
+                <div class="sidebar-quote"><span aria-hidden="true">✧</span><p>“Be still, and let your heart listen.”</p><small>@(Model.IsChinese ? "靜心片刻" : "A moment of quiet")</small></div>
+                <div class="sidebar-footer"><span>✝</span> FAITH · HOPE · LOVE</div>
+            </div>
+        </aside>
+        <div class="content-column">
+            <header class="mobile-header">
+                <a class="mobile-brand" href="@Model.PageUrl("home")"><span aria-hidden="true">✳</span> veritas</a>
+                <nav aria-label="@(Model.IsChinese ? "主要導覽" : "Main navigation")">
+                    <a href="@Model.PageUrl("readings")">@(Model.IsChinese ? "讀經" : "Readings")</a>
+                    <a href="@Model.PageUrl("prayer-library")">@(Model.IsChinese ? "祈禱" : "Prayers")</a>
+                    <a href="@Model.PageUrl("rosary")">@(Model.IsChinese ? "玫瑰經" : "Rosary")</a>
+                    <a href="@Model.PageUrl("holy-mass")">@(Model.IsChinese ? "彌撒" : "Mass")</a>
+                    <a href="@Model.PageUrl("about")">@(Model.IsChinese ? "關於" : "About")</a>
+                </nav>
+            </header>
+            @RenderBody()
+            <footer class="page-footer"><span class="footer-star">✳</span><span>@(Model.IsChinese ? "留一刻寧靜給心靈。" : "Made for a little more stillness.")</span><span class="footer-wordmark">VERITAS</span></footer>
+        </div>
+    </div>
 </body>
 </html>

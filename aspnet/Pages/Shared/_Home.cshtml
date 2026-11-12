@@ -1,0 +1,24 @@
+@model IndexModel
+@{
+    var zh = Model.IsChinese;
+}
+<header class="welcome-row">
+    <div><span class="eyebrow">@(zh ? "信德 · 望德 · 愛德" : "FAITH · HOPE · LOVE")</span><h1>@(zh ? "讓心靈安靜下來。" : "Make room for stillness.")</h1><p>@(zh ? "歡迎來到一處寧靜之地。讓我們開始祈禱。" : "Welcome to a quieter place. Let us begin.")</p></div>
+    <span class="sun-mark" aria-hidden="true">✳</span>
+</header>
+<section class="hero-card">
+    <div class="hero-copy"><span class="eyebrow eyebrow-light">@(zh ? "祈禱片刻" : "A MOMENT OF PRAYER")</span><h2>@(zh ? "在寧靜中與天主相遇。" : "Meet God in the quiet.")</h2><p>@(zh ? "深呼吸，將此刻的心事帶到天主面前。停留片刻，已經足夠。" : "Take one unhurried breath. Bring whatever is on your heart to God, and let this quiet moment be enough.")</p><a class="button button-cream" href="@Model.PageUrl("prayer-library")">@(zh ? "開始祈禱" : "Begin with a prayer") <span aria-hidden="true">→</span></a></div>
+    <div class="hero-art" aria-hidden="true"><span class="hero-sun">✳</span><span class="hero-arch arch-a"></span><span class="hero-arch arch-b"></span><span class="hero-arch arch-c"></span><span class="hero-caption">@(zh ? "靜心片刻" : "A LITTLE STILLNESS CAN CHANGE THE SHAPE OF A DAY")</span></div>
+</section>
+<section class="scripture-panel">
+    <div class="panel-heading"><div><span class="eyebrow">@(zh ? "今日聖言" : "TODAY’S SCRIPTURE")</span><h2>@(zh ? "閱讀、默想、祈禱。" : "Read, reflect, and pray.")</h2></div><span class="scripture-reference">@(zh ? "詠 46:10" : "Psalm 46:10")</span></div>
+    <blockquote>@(zh ? "你們要停手！應承認我是天主，是萬民的至尊，是大地的上主。" : "Be still and know that I am God.")</blockquote>
+    <div class="scripture-bottom"><span>@(zh ? "在今日的福音中，留意一個觸動你的字句。" : "Notice a word or phrase that stays with you today.")</span><a class="text-link" href="@Model.PageUrl("readings")">@(zh ? "閱讀每日讀經" : "Open daily readings") <span>→</span></a></div>
+</section>
+<section class="saint-panel"><span class="saint-symbol" aria-hidden="true">✝</span><div><span class="eyebrow">@(zh ? "今日同行的聖人" : "A SAINT TO ACCOMPANY YOU TODAY")</span><h2>@(zh ? "亞西西的聖方濟各" : "Saint Francis of Assisi")</h2><p>@(zh ? "方濟各放棄富裕生活，選擇貧窮，並創立方濟各會。他對受造界的愛，以及對窮人的關懷，至今仍啟發人以簡樸與和平生活。" : "Francis embraced poverty and founded the Order of Friars Minor. His love for creation and care for the poor still inspire a life of simplicity and peace.")</p><span class="virtue-tag">@(zh ? "簡樸與和平" : "Simplicity & peace")</span></div></section>
+<section class="explore-section"><div class="section-heading"><div><span class="eyebrow">@(zh ? "按自己的步伐" : "A PATH FOR EVERY DAY")</span><h2>@(zh ? "選擇祈禱方式" : "Find your way into prayer")</h2></div></div><div class="feature-grid">
+    <a class="feature-card" href="@Model.PageUrl("prayer-library")"><span class="feature-icon">◫</span><span class="eyebrow">01 · @(zh ? "祈禱詞" : "PRAYER")</span><h3>@(zh ? "日常祈禱文" : "Words to keep close")</h3><p>@(zh ? "在熟悉的祈禱詞中找到安慰。" : "Find familiar words for every season of life.")</p><span class="card-arrow">→</span></a>
+    <a class="feature-card" href="@Model.PageUrl("rosary")"><span class="feature-icon">◎</span><span class="eyebrow">02 · @(zh ? "默想" : "MEDITATION")</span><h3>@(zh ? "玫瑰經" : "The Rosary")</h3><p>@(zh ? "與聖母一起默想耶穌的一生。" : "Walk gently through the life of Jesus with Mary.")</p><span class="card-arrow">→</span></a>
+    <a class="feature-card" href="@Model.PageUrl("holy-mass")"><span class="feature-icon">✝</span><span class="eyebrow">03 · @(zh ? "禮儀" : "LITURGY")</span><h3>@(zh ? "彌撒常規" : "Order of Holy Mass")</h3><p>@(zh ? "跟隨彌撒的祈禱與禮儀。" : "Follow the prayers and rhythm of the Mass.")</p><span class="card-arrow">→</span></a>
+</div></section>
+<aside class="closing-note"><span aria-hidden="true">✧</span><p>“@(zh ? "讓我們記得，自己正置身於天主的聖意之中。" : "Let us remember that we are in the holy presence of God.")”</p><small>— @(zh ? "聖若望 · 巴提斯德 · 拉薩爾" : "A quiet invitation to begin")</small></aside>
