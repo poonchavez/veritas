@@ -7,7 +7,12 @@ var dbPath = Environment.GetEnvironmentVariable("INTENTIONS_DB_PATH") ?? "data/i
 var fullDbPath = Path.GetFullPath(dbPath);
 Directory.CreateDirectory(Path.GetDirectoryName(fullDbPath)!);
 builder.Services.AddDbContext<IntentionsDb>(options => options.UseSqlite($"Data Source={fullDbPath}"));
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddPageRoute("/Index", "{language:regex(^(zh-tw)$)}");
+    options.Conventions.AddPageRoute("/Index", "{PageName:regex(^(readings|prayer-intentions|intentions|holy-mass|prayer-library|rosary|about)$)}");
+    options.Conventions.AddPageRoute("/Index", "{language:regex(^(zh-tw)$)}/{PageName:regex(^(readings|prayer-intentions|intentions|holy-mass|prayer-library|rosary|about)$)}");
+});
 builder.Services.AddAntiforgery();
 
 var app = builder.Build();

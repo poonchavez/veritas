@@ -1,7 +1,4 @@
 @page "/"
-@page "/{language:regex(^(zh-tw)$)}"
-@page "/{PageName:regex(^(readings|prayer-intentions|intentions|holy-mass|prayer-library|rosary|about)$)}"
-@page "/{language:regex(^(zh-tw)$)}/{PageName:regex(^(readings|prayer-intentions|intentions|holy-mass|prayer-library|rosary|about)$)}"
 @model IndexModel
 @{
     ViewData["Locale"] = Model.CurrentLanguage;
